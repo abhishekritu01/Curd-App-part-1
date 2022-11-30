@@ -1,10 +1,13 @@
 import "./App.css";
-import { useState } from "react";
+import { useState} from "react";
+import TodoFrom from "./components/TodoFrom";
+import TodoList from "./components/TodoList"
 
 export default function App() {
   const [todo, setTodo] = useState("Enter ");
   const [todos, setTodos] = useState([]);
   const [editId, setEditId] = useState(0);
+ 
   
 
   const handleSubmit = (e) => {
@@ -50,27 +53,27 @@ export default function App() {
     })
     setTodos(updatedTodos)
   }
-
   
   return (
     <div className="App">
       <h1>todo-app</h1>
+        <TodoFrom
+        handleSubmit={handleSubmit}
+        todo={todo}
+        setTodo={setTodo}
+        editId={editId}
+      />
+  
 
-      <div>
-        <input  value={todo} onChange={(e) => setTodo(e.target.value)}></input>
-        <button onClick={handleSubmit}>{editId ? "Edit" : "Go"}</button>
-      </div>
+      <TodoList 
+      todos={todos} 
+      handleEdit={handleEdit} 
+      handleDelete={handleDelete} 
+      completeTodo={completeTodo}
+      todo={todo}
 
-      <div className={todo.completed ? "complete" : ""}>
-        {todos.map((t) => (
-          <div className="container" key={t.id}>
-            <ul style={{ textDecoration: t.completed ? "line-through" : "" }}>{t.todo}</ul>
-            <button onClick={() => handleDelete(t.id)}>delete</button>
-            <button onClick={() => handleEdit(t.id)}>update</button>
-            <button  onClick={() => completeTodo(t.id)}>completed</button>
-          </div>
-        ))}
-      </div>
+      
+      />
     </div>
   );
 }
