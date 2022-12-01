@@ -4,29 +4,8 @@ import TodoContext from '../context/TodoProvider'
 import '../App.css'
 
 const TodoList = () => {
-    const { todo,setTodo,setTodos,todos,setEditId} = useContext(TodoContext)
+    const {todo,todos, completeTodo, handleDelete, handleEdit } = useContext(TodoContext)
 
-
-    const handleDelete = (id) => {
-        const deleteTodo = todos.filter((t) => t.id !== id);
-        setTodos(deleteTodo);
-    };
-
-    const handleEdit = (id) => {
-        const editTodo = todos.find((t) => t.id === id);
-        setTodo(editTodo.todo);
-        setEditId(id);
-    };
-
-    const completeTodo = (id) => {
-        let updatedTodos = todos.map((todo) => {
-            if (todo.id === id) {
-                todo.completed = !todo.completed
-            }
-            return todo
-        })
-        setTodos(updatedTodos)
-    }
     return (
         <div className='App'>
             <div className={todo.completed ? "complete" : ""}>
