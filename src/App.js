@@ -1,14 +1,20 @@
 import React from 'react'
+import './App.css'
+import TodoState from './context/TodoState'
 import TodoFrom from './components/TodoFrom'
 import TodoList from './components/TodoList'
-import { TodoProvider } from './context/TodoProvider'
+
+
 
 const App = () => {
   return (
-    <TodoProvider>
-      <TodoFrom />
-      <TodoList />
-    </TodoProvider>
+    <div className='App'>
+      <h3>Todo-App</h3>
+      <TodoState>
+        <TodoFrom />
+        <TodoList />
+      </TodoState>
+    </div>
   )
 }
 
